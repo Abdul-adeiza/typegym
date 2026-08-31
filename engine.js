@@ -8,3 +8,7 @@ const userKeystrokes = [
 
 const correctKeystrokes = userKeystrokes.filter((keystroke) => keystroke.expected === keystroke.typed).length;
 console.log(correctKeystrokes);
+
+
+const accuracyPercentage = (correctKeystrokes, userKeystrokes) => (correctKeystrokes/(userKeystrokes.length)) * 100;
+console.log("The Accuracy Percentage is " + accuracyPercentage(correctKeystrokes, userKeystrokes) + "%");
