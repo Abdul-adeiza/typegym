@@ -28,3 +28,45 @@ const timeInMinutes = 1.5;
 
 const calculateWPM = (totalKeystrokes, timeInMinutes) => (totalKeystrokes / 5) / timeInMinutes;
 console.log("The Words per Minutes is " + Math.round(calculateWPM(totalKeystrokes, timeInMinutes)));
+
+
+
+class Visitor {
+  #name;
+  #department;
+  constructor(name, department) {
+    this.#name = name;
+    this.#department = department;
+  }
+  
+  printBadge() {
+    console.log("Printing NDPHC visitor badge for: " + this.#name + " in " + this.#department);
+  }
+
+  getDepartment() {
+    return this.#department;
+  }
+
+  setDepartment(newDepartment) {
+    if (typeof newDepartment === "string") {
+      this.#department = newDepartment;
+    }
+    else {
+      console.log("Invalid department")
+    }
+    
+  }
+
+}
+
+const visitor1 = new Visitor("Hauwa", "Commercial");
+
+visitor1.printBadge();
+
+console.log(visitor1.getDepartment());
+
+visitor1.setDepartment("Information Technology");
+
+console.log(visitor1.getDepartment());
+
+visitor1.setDepartment(999);
