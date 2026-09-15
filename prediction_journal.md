@@ -78,3 +78,64 @@ const { user, role, status } = serverResponse;
 console.log(role);
 console.log(status);
 console.log(user);
+
+
+
+
+
+NUMBER 3:
+class Contractor extends Visitor {
+  #company;
+
+  constructor(name, department, company) {
+    // The 'super' keyword calls the parent class's constructor
+    super(name, department); 
+    this.#company = company;
+  }
+
+  getCompany() {
+    return this.#company;
+  }
+}
+
+const techWorker = new Contractor("Emeka", "IT", "Siemens");
+techWorker.printBadge(); // Inherited from Visitor!
+console.log(techWorker.getCompany()); // Specific to Contractor
+
+My Prediction:
+The code will print to the console: "Printing NDPHC visitors badge for Emeka in IT department". It will also print to the console: "Siemens".
+
+Why:
+In the code we used "extends" to inherit the methods from the "Visitor" class. We used the "super" keyword to call the parent's or in this case "Visitor" class's constructor. So this "super(name, department)" line in the code is making the "this.#name = name; and this.#department = department" definition of the each constructor available to this class. If we delete the line before instantiating an object for the class, the code will crash.
+
+Why Deleting super() Crashes the ScriptYour intuition that omitting super(name, department) causes a crash is completely accurate. Here is the exact mechanics of why the JavaScript engine fails if that line is removed:In standard class creation, the new keyword instantly creates an empty object and binds it to this. However, when a class extends another class, JavaScript changes the rules:The child class (Contractor) does not create a this object on its own.Instead, it delegates that job to the parent class (Visitor).Calling super() triggers the parent's constructor, which builds the object, sets up its private fields (#name, #department), and initializes this.  If you omit super() or try to write this.#company = company before calling super(), JavaScript will throw a fatal error:ReferenceError: Must call super constructor in derived class before accessing 'this'
+
+
+
+
+
+
+class Contractor extends Visitor {
+  #company;
+
+  constructor(name, department, company) {
+    super(name, department);
+    this.#company = company;
+  }
+
+  // Overriding the printBadge method inherited from Visitor
+  printBadge() {
+    console.log("Printing CONTRACTOR badge for: " + this.getDepartment() + " (Company: " + this.#company + ")");
+  }
+}
+
+const contractor1 = new Contractor("Emeka", "IT", "Siemens");
+contractor1.printBadge();
+
+
+
+My Prediction:
+1. When contractor1.printBadge() is called, the child Contractor version will run there by printing "Printing CONTRACTOR badge for: IT (Company: Siemens)"
+
+Why:
+2. Inside the custom printbadge() method, we called this.getDepartment() instead of this.#department because department is locked in a vault in the visitor class as a constrcutor and the method that we created to give us a copy of the constructor value is this.getDepartment(), which is why we used the getDepartment() method and the "this" will point to itself, whioch points to the parent class that the contractor is inheriting from. 
