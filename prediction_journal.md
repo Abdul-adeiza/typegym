@@ -114,7 +114,7 @@ Why Deleting super() Crashes the ScriptYour intuition that omitting super(name, 
 
 
 
-
+NUMBER 4:
 class Contractor extends Visitor {
   #company;
 
@@ -139,3 +139,80 @@ My Prediction:
 
 Why:
 2. Inside the custom printbadge() method, we called this.getDepartment() instead of this.#department because department is locked in a vault in the visitor class as a constrcutor and the method that we created to give us a copy of the constructor value is this.getDepartment(), which is why we used the getDepartment() method and the "this" will point to itself, whioch points to the parent class that the contractor is inheriting from. 
+
+
+
+
+
+NUMBER 5:
+database.js file
+
+export const dbName = "NDPHC_Core";
+export const port = 5432;
+
+export default function connect() {
+  return "Database connected.";
+}
+
+
+server.js file
+
+import startEngine, { dbName, DBport } from './database.js';
+
+console.log(startEngine());
+console.log(dbName);
+console.log(DBport);
+
+
+My Prediction: 
+When you run server,js, javascript will crash with a SyntaxError because the code is trying to import the vairable "port" in to server.js using the name "DBport". This will crash the javasacript. Since the variable being imported is a standard import, the exact name of the variable must be used. 
+
+The correct way to import would be:
+import startEngine, { dbName, port } from './database.js';
+
+(Side note: If you ever desperately need to rename a Side Attraction during import to avoid naming conflicts, JavaScript gives you the as keyword: import { port as DBport } from './database.js';)
+
+
+
+
+
+
+NUMBER 6:
+const userTags = ["admin", "editor", "admin", "viewer", "editor"];
+
+// Pass the array into the VIP Bouncer
+const uniqueTags = new Set(userTags);
+
+// Note: Arrays use .length, but Sets and Maps use .size
+console.log(uniqueTags.size);
+
+
+My Prediction:
+It will output 3
+
+Why:
+You created "set" or a VIP list from the userTags array that contains multiple repeated value. The VIP list simply removes duplicates while creating its own list.
+
+
+
+
+
+NUMBER 7:
+// MAP
+const user1 = { name: "Abdulazeez", id: 101 };
+const user2 = { name: "Hauwa", id: 102 };
+
+// 1. Create the Advanced Filing Cabinet
+const accessLog = new Map();
+
+// 2. We use the ENTIRE object as the file label (key), 
+// and a string as the file contents (value).
+accessLog.set(user1, "Logged in at 09:00 AM");
+accessLog.set(user2, "Logged in at 10:30 AM");
+
+
+My Prediction:
+console.log(accessLog.get(user1)) will print "Logged in at 09:00 AM" as output.
+
+Why:
+The code used Map to create a set array that took an object as it key and a string as it value. The '.get' in console.log(accessLog.get(user1)) will get the value 'Logged in at 09:00 AM' of the key 'accessLog.get(user1)' and console.log() will simply output it. This is safer than a standard object because standard objects do not take in an object as an input instead it will quietly convert the object to string literals. Thereby, creating hiddne bugs. 
