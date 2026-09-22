@@ -6,6 +6,8 @@ const userKeystrokes = [
     { expected: "t", typed: "r"} // Incorrect
 ]
 
+const startTime = Date.now();
+
 const correctKeystrokes = userKeystrokes.filter((keystroke) => keystroke.expected === keystroke.typed).length;
 console.log(correctKeystrokes);
 
@@ -28,3 +30,7 @@ const timeInMinutes = 1.5;
 
 const calculateWPM = (totalKeystrokes, timeInMinutes) => (totalKeystrokes / 5) / timeInMinutes;
 console.log("The Words per Minutes is " + Math.round(calculateWPM(totalKeystrokes, timeInMinutes)));
+
+const endTime = Date.now();
+
+console.log(Math.round((endTime - startTime)/60000));

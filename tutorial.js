@@ -194,3 +194,54 @@ accessLog.set(user1, "Logged in at 09:00 AM");
 accessLog.set(user2, "Logged in at 10:30 AM");
 
 console.log(accessLog.get(user1));
+
+
+
+
+
+
+
+//FUNCTION SYNTAX STYLES (STANDALONE)
+
+//Standard function Outside an Object
+function calculate(a, b) { 
+  return a + b; 
+}
+
+//Arrow function (Multi-line) outside an Object
+const calculate = (a, b) => { 
+  return a + b; 
+};
+
+//Arrow function (One-line / Implicit Return)
+const calculates = (a, b) => a + b;
+
+//Inside an Object (Methods)
+
+//Standard Method (ES6 Shorthand - Recommended)
+const user = { 
+  calculate(a, b) { 
+    return a + b; 
+  }
+};
+
+//Standard Method (Classic)
+const users = { 
+  calculate: function(a, b) { 
+    return a + b; 
+  } 
+};
+
+
+//Arrow Method (Warning - loses this)
+const userr = { 
+  calculate: (a, b) => a + b 
+};
+
+
+//Inside a Class (Methods)
+class Engine { 
+  calculate(a, b) { 
+    return a + b; 
+  } 
+}
