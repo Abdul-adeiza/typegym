@@ -16,7 +16,7 @@ export default class TypingEngine {
     };
 
     totalkeystroke() {
-        console.log("The total number of words typed is: " + this.#userKeystrokes.length);
+        return "The total number of words typed is: " + this.#userKeystrokes.length;
     };
 
     getAccuracy() {

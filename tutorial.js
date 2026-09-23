@@ -98,7 +98,7 @@ console.log(techWorker.getCompany()); // Specific to Contractor
 
 
 
-/*
+
 // METHOD OVERRIDING (POLYMORPHISM)
 class Contractor extends Visitor {
   #company;
@@ -116,10 +116,10 @@ class Contractor extends Visitor {
 
 const contractor1 = new Contractor("Emeka", "IT", "Siemens");
 contractor1.printBadge();
-*/
 
 
-/*
+
+
 // MODULES - EXPORT & IMPORT
 // A seperate file
 export const maxVisitors = 50;
@@ -142,12 +142,12 @@ const guest = new Visitor("Hauwa");
 console.log(guest.name);
 console.log(maxVisitors);
 console.log(checkClearance());
-*/
 
 
 
-/*
-database.js file
+
+
+//database.js file
 
 export const dbName = "NDPHC_Core";
 export const port = 5432;
@@ -157,14 +157,14 @@ export default function connect() {
 }
 
 
-server.js file
+//server.js file
 
 import startEngine, { dbName, DBport } from './database.js';
 
 console.log(startEngine());
 console.log(dbName);
 console.log(DBport);
-*/
+
 
 
 
