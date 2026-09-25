@@ -18,5 +18,5 @@ test('Calculates 100% accuracy when all keystrokes are correct', () => {
   
   // 3. ASSERT
   // [YOUR TURN: Use assert.strictEqual() to check if getAccuracy() returns "100.00"]
-  assert.strictEqual();
+  assert.strictEqual(engine.getAccuracy(), 100);
 });
