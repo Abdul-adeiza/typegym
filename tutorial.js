@@ -245,3 +245,20 @@ class Engine {
     return a + b; 
   } 
 }
+
+
+
+//How to use time delay
+/*
+setTimeout( () => {
+    typingAccuracy.endTimer();
+
+    typingAccuracy.totalTimer();
+
+    typingAccuracy.totalkeystroke();
+
+    console.log("Your typing accuracy is: " + typingAccuracy.getAccuracy());
+
+    console.log("The Words per Minutes is: " + typingAccuracy.getWPM());
+}, 3000);
+ */

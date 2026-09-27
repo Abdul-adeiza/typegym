@@ -8,7 +8,7 @@ export default class TypingEngine {
         this.#userKeystrokes = [];
         this.#startTime = null;
         this.#endTime = null;
-       this.#totalTime = null;
+        this.#totalTime = null;
     };
 
     addKeystroke(expectedChar, typedChar) {
@@ -20,7 +20,10 @@ export default class TypingEngine {
     };
 
     getAccuracy() {
-        return (((this.#userKeystrokes.filter((keystroke) => keystroke.expected === keystroke.typed).length) / (this.#userKeystrokes.length)) * 100).toFixed(2);
+        if (this.#userKeystrokes.length === 0)
+            return "0.00"
+        else
+            return (((this.#userKeystrokes.filter((keystroke) => keystroke.expected === keystroke.typed).length) / (this.#userKeystrokes.length)) * 100).toFixed(2);
     };
 
     startTimer() {
@@ -36,44 +39,10 @@ export default class TypingEngine {
     };
 
     getWPM() {
-        return Math.round(((this.#userKeystrokes.length)/5) / this.#totalTime);
+        if (this.#totalTime === 0 || this.#totalTime === null)
+            return 0;
+        else
+            return Math.round(((this.#userKeystrokes.length)/5) / this.#totalTime);
     };
 
 }
-
-
-const typingAccuracy = new TypingEngine();
-
-typingAccuracy.startTimer();
-
-typingAccuracy.addKeystroke("o", "p");
-typingAccuracy.addKeystroke("m", "m");
-typingAccuracy.addKeystroke("p", "q");
-typingAccuracy.addKeystroke(",", ",");
-typingAccuracy.addKeystroke("z", "e");
-typingAccuracy.addKeystroke("s", "s");
-typingAccuracy.addKeystroke("j", "l");
-
-
-setTimeout( () => {
-    typingAccuracy.endTimer();
-
-    typingAccuracy.totalTimer();
-
-    typingAccuracy.totalkeystroke();
-
-    console.log("Your typing accuracy is: " + typingAccuracy.getAccuracy());
-
-    console.log("The Words per Minutes is: " + typingAccuracy.getWPM());
-}, 3000);
-
-
-
-
-
-
-
-
-
-
-
