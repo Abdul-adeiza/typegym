@@ -3,17 +3,38 @@ export default class TypingEngine {
     #startTime;
     #endTime;
     #totalTime;
+    #drills;
 
     constructor() {
         this.#userKeystrokes = [];
         this.#startTime = null;
         this.#endTime = null;
         this.#totalTime = null;
+        this.#drills = [
+            "const x = 10;",
+            "let name = 'Bello';",
+            "function add(a, b) { return a + b; }",
+            "() => console.log('Hello');"
+        ];
     };
 
     addKeystroke(expectedChar, typedChar) {
         this.#userKeystrokes.push({ "expected": expectedChar, "typed": typedChar });
     };
+
+    generateDrill() {
+        const randomNum = Math.random();
+        const multipliedNum = randomNum * this.#drills.length;
+        const chopper = Math.floor(multipliedNum);
+        return this.#drills[chopper];
+    };
+
+    //The one line version of geenrateDrill() method
+    /*
+    generateDrill() {
+    return this.#drills[Math.floor(Math.random() * this.#drills.length)];
+}
+    */
 
     totalkeystroke() {
         return "The total number of words typed is: " + this.#userKeystrokes.length;
