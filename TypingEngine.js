@@ -47,12 +47,12 @@ export default class TypingEngine {
             return (((this.#userKeystrokes.filter((keystroke) => keystroke.expected === keystroke.typed).length) / (this.#userKeystrokes.length)) * 100).toFixed(2);
     };
 
-    startTimer() {
-        return this.#startTime = Date.now();
+    startTimer(manualTime) {
+        this.#startTime = manualTime || Date.now();
     };
 
-    endTimer() {
-        return this.#endTime = Date.now();
+    endTimer(manualTime) {
+        this.#endTime = manualTime || Date.now();
     };
 
     totalTimer() {

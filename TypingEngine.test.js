@@ -202,10 +202,31 @@ test('Test for High Volume Stress Test', () => {
   const volumeEngine = new TypingEngine();
 
   // 2. Act
-  for (const i = 1; i <= 1000; i++) {
+  for (let i = 1; i <= 1000; i++) {
     volumeEngine.addKeystroke("a", "a");
-  }
+  };
 
   // 3. Assert
   assert.strictEqual(volumeEngine.totalkeystroke(), "The total number of words typed is: 1000");
+});
+
+
+
+test('Test for exactly one word per minute', () => {
+  //1. Arrange
+  const oneEngine = new TypingEngine();
+
+  //2. Act
+  oneEngine.startTimer(1);
+  oneEngine.addKeystroke("W", "W");
+  oneEngine.addKeystroke("o", "o");
+  oneEngine.addKeystroke("r", "r");
+  oneEngine.addKeystroke("d", "d");
+  oneEngine.addKeystroke("s", "s");
+  oneEngine.totalkeystroke();
+  oneEngine.endTimer(60001);
+  oneEngine.totalTimer();
+
+  //3. Assert
+  assert.strictEqual(oneEngine.getWPM(), 1)
 });
